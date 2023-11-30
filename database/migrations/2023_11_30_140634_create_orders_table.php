@@ -12,8 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('product_id')->constrained();
+            $table->integer('id')->autoIncrement();
+            $table->integer('product_id');
+            $table->foreign('product_id')->references('id')->on('products');
             $table->integer('quantity');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();

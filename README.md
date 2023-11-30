@@ -54,7 +54,7 @@ Modify the existing migration file "create_products_table" to add a new column c
 
 ```php
 Schema::create('products', function (Blueprint $table) {
-    $table->id();
+    $table->integer('id')->autoIncrement();
     $table->string('name');
     $table->decimal('price');
     $table->text('description');
@@ -108,8 +108,9 @@ php artisan make:migration create_orders_table
 
 ```php
 Schema::create('orders', function (Blueprint $table) {
-    $table->id();
-    $table->foreignId('product_id')->constrained();
+    $table->integer('id')->autoIncrement();
+    $table->integer('product_id');
+    $table->foreign('product_id')->references('id')->on('products');
     $table->integer('quantity');
     $table->timestamp('created_at')->useCurrent();
     $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
