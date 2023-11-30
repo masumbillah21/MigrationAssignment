@@ -67,7 +67,11 @@ Schema::create('products', function (Blueprint $table) {
 After modify existing file run
 
 ```Terminal
-php artisan migrate:refresh
+php artisan migrate:rollback
+```
+
+```Terminal
+php artisan migrate
 ```
 
 ## Task 5
@@ -79,9 +83,25 @@ php artisan make:migration add_category_to_products_table
 ```
 
 ```php
-Schema::table('products', function (Blueprint $table) {
-    $table->string('category', 50)->after('quantity'); //->after('description') optional here
-});
+/**
+ * Run the migrations.
+ */
+public function up(): void
+{
+    Schema::table('products', function (Blueprint $table) {
+        $table->string('category', 50);
+    });
+}
+
+/**
+ * Reverse the migrations.
+ */
+public function down(): void
+{
+    Schema::table('products', function (Blueprint $table) {
+        $table->dropColumn('category');
+    });
+}
 ```
 
 ## Task 6
@@ -107,14 +127,17 @@ php artisan make:migration create_orders_table
 - updated_at: a timestamp column to store the last update date and time.
 
 ```php
-Schema::create('orders', function (Blueprint $table) {
-    $table->integer('id')->autoIncrement();
-    $table->integer('product_id');
-    $table->foreign('product_id')->references('id')->on('products');
-    $table->integer('quantity');
-    $table->timestamp('created_at')->useCurrent();
-    $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
-});
+public function up(): void
+{
+    Schema::create('orders', function (Blueprint $table) {
+        $table->integer('id')->autoIncrement();
+        $table->integer('product_id');
+        $table->foreign('product_id')->references('id')->on('products');
+        $table->integer('quantity');
+        $table->timestamp('created_at')->useCurrent();
+        $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
+    });
+}
 ```
 
 ## Task 8
