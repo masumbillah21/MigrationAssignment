@@ -4,13 +4,13 @@
 
 Create a new Laravel project named "MigrationAssignment" using the Laravel command-line interface.
 
-```
+```Terminal
 composer create-project laravel/laravel MigrationAssignment
 ```
 
 or
 
-```
+```Terminal
 laravel new MigrationAssignment
 ```
 
@@ -18,7 +18,7 @@ laravel new MigrationAssignment
 
 Within the project, create a new migration file named "create_products_table" that will be responsible for creating a table called "products" in the database. The "products" table should have the following columns:
 
-```
+```Terminal
 php artisan make:migration create_products_table
 ```
 
@@ -44,7 +44,7 @@ Schema::create('products', function (Blueprint $table) {
 
 After creating the migration file, run the migration to create the "products" table in the database.
 
-```
+```Terminal
 php artisan migrate   
 ```
 
@@ -66,7 +66,7 @@ Schema::create('products', function (Blueprint $table) {
 
 After modify existing file run
 
-```
+```Terminal
 php artisan migrate:refresh
 ```
 
@@ -74,7 +74,7 @@ php artisan migrate:refresh
 
 Create a new migration file named "add_category_to_products_table" that will be responsible for adding a new column called "category" to the "products" table. The "category" column should be a string column with a maximum length of 50 characters.
 
-```
+```Terminal
 php artisan make:migration add_category_to_products_table
 ```
 
@@ -88,7 +88,7 @@ Schema::table('products', function (Blueprint $table) {
 
 After creating the new migration file, run the migration to add the "category" column to the "products" table.
 
-```
+```Terminal
 php artisan migrate   
 ```
 
@@ -96,7 +96,7 @@ php artisan migrate
 
 Create a new migration file named "create_orders_table" that will be responsible for creating a table called "orders" in the database. The "orders" table should have the following columns:
 
-```
+```Terminal
 php artisan make:migration create_orders_table
 ```
 
@@ -121,6 +121,6 @@ Schema::create('orders', function (Blueprint $table) {
 
 After creating the migration file for the "orders" table, run the migration to create the "orders" table in the database
 
-```
-php artisan migrate   
+```Terminal
+php artisan migrate
 ```
