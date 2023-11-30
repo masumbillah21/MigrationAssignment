@@ -31,7 +31,7 @@ php artisan make:migration create_products_table
 
 ```php
 Schema::create('products', function (Blueprint $table) {
-    $table->id();
+    $table->integer('id')->autoIncrement();
     $table->string('name');
     $table->decimal('price');
     $table->text('description');
